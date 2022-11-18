@@ -66,7 +66,7 @@
       </div>
       <div class="justify-center card-actions">
         <a href={`/posts/${slug}`} class="btn btn-outline btn-primary"
-          >Read &rArr;</a
+          >Read ->;</a
         >
       </div>
     </div>

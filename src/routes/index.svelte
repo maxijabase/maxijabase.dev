@@ -50,9 +50,9 @@
   url={`${siteUrl}`}
 />
 
-<h1 class="font-bold text-center mb-20 text-5xl">
+<!-- <h1 class="font-bold text-center mb-20 text-5xl">
   Welcome to my Portfolio
-</h1>
+</h1> -->
 
 {#each authors as { name, intro, picture: { url } }}
   <div class="flex mb-40 items-end">
