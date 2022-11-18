@@ -39,7 +39,7 @@
 </script>
 
 <Head
-  title={`Blog posts! · ${siteName}`}
+  title={`Blog · ${siteName}`}
   description={`A list of recent blog posts.`}
   image={openGraphDefaultImage.url}
   url={`${siteUrl}${pathname}`}
