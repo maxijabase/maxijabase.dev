@@ -66,7 +66,7 @@
       </div>
       <div class="justify-center card-actions">
         <a href={`/blog/${slug}`} class="btn btn-outline btn-primary"
-          >Read ->;</a
+          >Read</a
         >
       </div>
     </div>
