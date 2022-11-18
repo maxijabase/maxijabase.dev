@@ -43,12 +43,12 @@ const xml = (
         <item>
           <title>${post.title}</title>
           <description>This is my portfolio!</description>
-          <link>${siteUrl}/posts/${post.slug}/</link>
+          <link>${siteUrl}/blog/${post.slug}/</link>
           <pubDate>${new Date(post.date)}</pubDate>
           <content:encoded>${post.previewHtml} 
             <div style="margin-top: 50px; font-style: italic;">
               <strong>
-                <a href="${siteUrl}/posts/${post.slug}">
+                <a href="${siteUrl}/blog/${post.slug}">
                   Keep reading
                 </a>
               </strong>  

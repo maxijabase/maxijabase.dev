@@ -65,7 +65,7 @@
         {/each}
       </div>
       <div class="justify-center card-actions">
-        <a href={`/posts/${slug}`} class="btn btn-outline btn-primary"
+        <a href={`/blog/${slug}`} class="btn btn-outline btn-primary"
           >Read ->;</a
         >
       </div>
