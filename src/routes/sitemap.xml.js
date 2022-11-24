@@ -76,7 +76,7 @@ const sitemap = (
     .map(
       post => `
   <url>
-    <loc>${siteUrl}/posts/${post.slug}</loc>
+    <loc>${siteUrl}/blog/${post.slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>

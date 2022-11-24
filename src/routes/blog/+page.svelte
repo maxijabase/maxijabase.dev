@@ -1,9 +1,7 @@
 <script>
   import { page } from '$app/stores'
   import Head from '$components/head.svelte'
-  import {
-      siteMetadataStore
-  } from '$stores/site-metadata'
+  import { siteMetadataStore } from '$stores/site-metadata'
   import { marked } from 'marked'
   import { onMount } from 'svelte'
   export let data
@@ -21,7 +19,7 @@
 </script>
 
 <Head
-  title={`Blog posts! · ${siteName}`}
+  title={`Blog · ${siteName}`}
   description={`A list of recent blog posts.`}
   image={openGraphDefaultImage.url}
   url={`${siteUrl}${pathname}`}
@@ -47,8 +45,8 @@
         {/each}
       </div>
       <div class="justify-center card-actions">
-        <a href={`/posts/${slug}`} class="btn btn-outline btn-primary"
-          >Read &rArr;</a
+        <a href={`/blog/${slug}`} class="btn btn-outline btn-primary"
+          >Read Now</a
         >
       </div>
     </div>
