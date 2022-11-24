@@ -3,6 +3,7 @@ import { gql } from 'graphql-request'
 import { get as meatdata } from './site-metadata.json.js'
 
 export const get = async () => {
+
   const {
     body: { name, siteUrl },
   } = await meatdata()
@@ -43,12 +44,12 @@ const xml = (
         <item>
           <title>${post.title}</title>
           <description>This is my portfolio!</description>
-          <link>${siteUrl}/blog/${post.slug}/</link>
+          <link>${siteUrl}/posts/${post.slug}/</link>
           <pubDate>${new Date(post.date)}</pubDate>
           <content:encoded>${post.previewHtml} 
             <div style="margin-top: 50px; font-style: italic;">
               <strong>
-                <a href="${siteUrl}/blog/${post.slug}">
+                <a href="${siteUrl}/posts/${post.slug}">
                   Keep reading
                 </a>
               </strong>  

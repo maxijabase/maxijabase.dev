@@ -23,10 +23,10 @@
 >
   <div class="grid grid-flow-col gap-4">
     <a class="link link-hover" href="/projects">Portfolio</a>
-    <a class="link link-hover" href="/blog">Blog</a>
+    <a class="link link-hover" href="/posts">Blog</a>
     <a class="link link-hover" href="/about">About</a>
   </div>
-  <!-- <div>
+  <div>
     <div class="grid grid-flow-col gap-4">
       <a href={twitterUrl}>
         <TwitterIcon />
@@ -38,5 +38,11 @@
         <FacebookIcon />
       </a>
     </div>
-  </div> -->
+  </div>
+  <div>
+    <p>
+      Copyright &copy; {`${new Date().getFullYear()}`} - All right reserved
+      {AuthorName}
+    </p>
+  </div>
 </footer>
