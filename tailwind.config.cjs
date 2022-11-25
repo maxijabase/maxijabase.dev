@@ -1,19 +1,23 @@
-const config = {
+module.exports = {
   mode: 'jit',
   content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: null,
-          },
+  plugins: [require('daisyui')],
+
+  daisyui: {
+    themes: [
+      {
+        dark: {
+          ...require('daisyui/src/colors/themes')['[data-theme=dark]'],
+          primary: 'red',
+        },
+        light: {
+          ...require('daisyui/src/colors/themes')['[data-theme=light]'],
+          primary: 'green',
         },
       },
-    },
+      "dark",
+      "light"
+    ],
   },
-
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
 }
-module.exports = config
