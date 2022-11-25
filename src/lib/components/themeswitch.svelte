@@ -1,5 +1,6 @@
 <script>
   import { themeChange } from 'theme-change'
+  import { browser } from '$app/environment'
 
   let darkMode = true
 
@@ -10,7 +11,21 @@
       ? localStorage.setItem('theme', 'dark')
       : localStorage.setItem('theme', 'light')
 
-      themeChange(false);
+    themeChange(false)
+  }
+
+  if (browser) {
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.classList.add('dark')
+      darkMode = true
+    } else {
+      document.documentElement.classList.remove('dark')
+      darkMode = false
+    }
   }
 </script>
 

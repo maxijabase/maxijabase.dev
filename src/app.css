@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, footer, .navbar {
+  transition: background-color .5s ease-in-out, color .5s ease-in-out;
+}
+
 #svelte {
   display: flex;
   flex-direction: column;
