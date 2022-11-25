@@ -1,19 +1,26 @@
-<script context="module">
+<script>
+  import LinkedinIcon from './linkedin-icon.svelte'
+  import GithubIcon from './github-icon.svelte'
   import {
-    fetchAuthors,
     fetchSocials,
+    socialsStore,
   } from '$stores/site-metadata'
 
-  fetchAuthors()
   fetchSocials()
+
+  const { githubUrl, linkedinUrl } = $socialsStore
+  
 </script>
 
-<footer
-  class="p-10 footer bg-neutral text-primary-content footer-center text-lg"
->
-  <div class="grid grid-flow-col gap-4">
-    <a class="link link-hover" href="/projects">Portfolio</a>
-    <a class="link link-hover" href="/blog">Blog</a>
-    <a class="link link-hover" href="/about">About</a>
+<footer class="p-8 footer bg-neutral text-neutral-content footer-center">
+  <div>
+    <div class="grid grid-flow-col gap-6">
+      <a href={linkedinUrl} target="_blank" rel="noreferrer">
+        <LinkedinIcon />
+      </a>
+      <a href={githubUrl}>
+        <GithubIcon />
+      </a>
+    </div>
   </div>
 </footer>

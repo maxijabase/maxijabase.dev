@@ -9,11 +9,11 @@ module.exports = {
       {
         dark: {
           ...require('daisyui/src/colors/themes')['[data-theme=dark]'],
-          primary: 'red',
+          accent: 'turquoise',
         },
         light: {
           ...require('daisyui/src/colors/themes')['[data-theme=light]'],
-          primary: 'green',
+          accent: 'turquoise',
         },
       },
       "dark",

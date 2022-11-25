@@ -1,0 +1,1 @@
+<i class="text-[40px] devicon-linkedin-plain"/>
