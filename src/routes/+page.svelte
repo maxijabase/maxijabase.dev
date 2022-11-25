@@ -9,7 +9,6 @@
 
   const {
     siteUrl,
-    name: siteName,
     description,
     openGraphDefaultImage,
   } = $siteMetadataStore || []

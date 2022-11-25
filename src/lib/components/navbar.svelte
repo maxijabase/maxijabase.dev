@@ -1,5 +1,5 @@
 <script>
-  import ThemeSelect from './theme-select.svelte'
+  import ThemeSwitch from './themeswitch.svelte'
 </script>
 
 <div
@@ -27,7 +27,7 @@
     </ul>
   </div>
 
-  <div class="flex-none hidden px-2 mx-2 lg:flex">
+  <div class="flex-none hidden px-1 mx-1 lg:flex">
     <div class="flex items-stretch">
       <a class="btn btn-ghost btn-sm rounded-btn" href="/projects">
         Portfolio
@@ -38,9 +38,9 @@
       <a class="btn btn-ghost btn-sm rounded-btn" href="/about">
         About
       </a>
-      <div class="px-4">
-        <ThemeSelect />
-      </div>
     </div>
+  </div>
+  <div class="mr-2">
+    <ThemeSwitch />
   </div>
 </div>

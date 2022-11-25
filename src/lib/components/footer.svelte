@@ -1,9 +1,7 @@
 <script context="module">
   import {
-    authorsStore,
     fetchAuthors,
     fetchSocials,
-    socialsStore,
   } from '$stores/site-metadata'
 
   fetchAuthors()
