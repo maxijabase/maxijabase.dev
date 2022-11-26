@@ -42,7 +42,7 @@
     {#if data.project.tags}
       {#each data.project.tags as tag}
         <span
-          class="badge badge-primary mr-2 hover:bg-primary-focus cursor-pointer"
+          class="badge mr-2 cursor-pointer"
           >{tag}</span
         >
       {/each}
@@ -51,12 +51,12 @@
 </div>
 
 <div
-  class="mb-5 prose flex prose-a:text-primary hover:prose-a:text-primary-focus"
+  class="mb-5 prose flex"
 >
   <a class="mr-5" href={data.project.demo}>Demo</a>
   <a href={data.project.sourceCode}>Source Code</a>
 </div>
 
-<article class="prose prose-xl">
-  {@html marked(data.project.description)}
+<article class="prose prose-lg">
+  {@html marked(data.project.about)}
 </article>

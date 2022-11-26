@@ -17,6 +17,7 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
+    "@tailwindcss/typography": "^0.5.8",
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
     "daisyui": "^2.42.1",

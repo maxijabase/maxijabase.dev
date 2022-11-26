@@ -18,6 +18,7 @@ const PROJECT_FRAGMENT = gql`
     name
     slug
     description
+    about
     tags
     demo
     sourceCode
