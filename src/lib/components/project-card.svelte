@@ -5,12 +5,12 @@
   export let description = ''
 </script>
 
-<a href="/projects/{slug}">
-  <div class="card w-80 bg-base-100 shadow-xl group image-full">
-    <figure><img src={url} alt={description} class="transition group-hover:scale-105" /></figure>
-    <div class="card-body pt-14">
-      <h1 class="card-title text-2xl transition-all group-hover:text-3xl">{name}</h1>
-      <p class="text-base transition-all group-hover:text-lg">{description}</p>
+<a href="/projects/{slug}" class="group">
+  <div class="card card-compact w-72 md:w-80 bg-base-100 shadow-2xl transition-all group-hover:shadow-black">
+    <figure><img src={url} alt="Shoes" class="transition group-hover:scale-105" /></figure>
+    <div class="card-body">
+      <h2 class="card-title">{name}</h2>
+      <p>{description}</p>
     </div>
   </div>
 </a>

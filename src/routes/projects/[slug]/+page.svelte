@@ -58,5 +58,5 @@
 </div>
 
 <article class="prose prose-lg">
-  {@html marked(data.project.about)}
+  {@html marked(data.project.about ?? '')}
 </article>

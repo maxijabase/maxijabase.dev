@@ -1,6 +1,6 @@
 <script>
+  import ProjectView from '$components/project-view.svelte'
   import Head from '$components/head.svelte'
-  import ProjectCard from '$components/project-card.svelte'
   import {
     authorsStore,
     siteMetadataStore,
@@ -33,10 +33,4 @@
   </div>
 {/each}
 
-<div
-  class="grid gap-10 md:grid-cols-4 md:px-10 lg:grid-cols-6 lg:-mx-52"
->
-  {#each data.projects as { name, slug, description, image }}
-    <ProjectCard {name} {description} url={image[0].url} {slug} />
-  {/each}
-</div>
+<ProjectView/>
