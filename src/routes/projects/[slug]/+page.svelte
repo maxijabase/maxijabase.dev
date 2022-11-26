@@ -27,7 +27,7 @@
   url={`${siteUrl}${pathname}`}
 />
 
-<div class="sm:-mx-5 md:-mx-10 lg:-mx-20 xl:-mx-38 mb-5">
+<div class="mb-5">
   <img
     class="rounded-lg"
     src={data.project.image[0].url}
@@ -36,19 +36,6 @@
 </div>
 
 <h1 class="text-4xl font-semibold mb-5">{data.project.name}</h1>
-
-<div class="mb-5 flex justify-between">
-  <div>
-    {#if data.project.tags}
-      {#each data.project.tags as tag}
-        <span
-          class="badge mr-2 cursor-pointer"
-          >{tag}</span
-        >
-      {/each}
-    {/if}
-  </div>
-</div>
 
 <div
   class="mb-5 prose flex"
