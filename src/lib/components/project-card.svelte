@@ -24,9 +24,9 @@
 {:else}
   <a href="/projects/{slug}" class="group">
     <div
-      class="card card-compact w-72 md:w-80 bg-base-100 shadow-2xl transition-all group-hover:shadow-black"
+      class="card card-compact md:w-72 lg:w-80 shadow-xl transition group-hover:shadow-black group-hover:scale-[1.03] group-active:scale-100 group-active:shadow-none"
     >
-      <figure><img src={url} alt="Shoes" class="transition group-hover:scale-105" /></figure>
+      <figure><img src={url} alt="Shoes" /></figure>
       <div class="card-body">
         <h2 class="card-title">{name}</h2>
         <p>{description}</p>
