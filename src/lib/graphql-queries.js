@@ -56,6 +56,7 @@ const POST_FRAGMENT = gql`
     coverImage {
       url
     }
+    coverImageCaption
     authors {
       name
     }
