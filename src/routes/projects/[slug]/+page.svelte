@@ -1,9 +1,8 @@
 <script>
   import { page } from '$app/stores'
+  import BackLink from '$components/back-link.svelte'
   import Head from '$components/head.svelte'
-  import {
-      siteMetadataStore
-  } from '$stores/site-metadata'
+  import { siteMetadataStore } from '$stores/site-metadata'
   import { marked } from 'marked'
   import { onMount } from 'svelte'
   export let data
@@ -13,11 +12,7 @@
     pathname = $page.url.pathname
   })
 
-  const {
-    siteUrl,
-    name: siteName,
-    openGraphDefaultImage,
-  } = $siteMetadataStore || []
+  const { siteUrl, name: siteName, openGraphDefaultImage } = $siteMetadataStore || []
 </script>
 
 <Head
@@ -27,23 +22,20 @@
   url={`${siteUrl}${pathname}`}
 />
 
+<!-- Back button -->
+<BackLink text="back to projects" href="/projects"/>
+
+<!-- Title -->
+<div class="prose prose-xl py-5">
+  <h2>{data.project.name}</h2>
+</div>
+
+<!-- Image -->
 <div class="mb-5">
-  <img
-    class="rounded-lg"
-    src={data.project.image[0].url}
-    alt={data.project.title}
-  />
+  <img class="rounded-lg" src={data.project.image[0].url} alt={data.project.title} />
 </div>
 
-<h1 class="text-4xl font-semibold mb-5">{data.project.name}</h1>
-
-<div
-  class="mb-5 prose flex"
->
-  <a class="mr-5" href={data.project.demo}>Demo</a>
-  <a href={data.project.sourceCode}>Source Code</a>
-</div>
-
-<article class="prose prose-lg">
+<!-- Content -->
+<article class="prose prose-lg max-w-none text-justify">
   {@html marked(data.project.about ?? '')}
 </article>

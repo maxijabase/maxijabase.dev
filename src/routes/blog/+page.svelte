@@ -21,18 +21,20 @@
   url={`${siteUrl}${pathname}`}
 />
 
-<h1 class="text-4xl mb-10 font-extrabold">Blog posts</h1>
+<h1 class="font-bold mb-20 text-center text-5xl">Blog posts</h1>
 
-{#each data.posts as { title, slug, content, coverImage, tags }}
+{#each data.posts as { title, slug, content, coverImage }}
   <div class="card text-center shadow-2xl mb-20">
-    <figure class="">
-      <img class="" src={coverImage.url} alt={`Cover image for ${title}`} />
+    <figure>
+      <img src={coverImage.url} alt={`Cover image for ${title}`} />
     </figure>
     <div class="card-body prose max-w-none">
-      <h2 class="title">{title}</h2>
-      {@html marked(content).slice(0, 150)}
+      <h2 class="title">
+        {title}
+      </h2>
+      {content.split(' ', 20).join(' ')}...
       <div class="justify-center card-actions">
-        <a href={`/blog/${slug}`} class="btn btn-outline">Read Now</a>
+        <a href={`/blog/${slug}`} class="btn btn-outline no-underline mt-4">Read Now</a>
       </div>
     </div>
   </div>
