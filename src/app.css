@@ -16,3 +16,8 @@ html, footer, .navbar {
 main {
   flex-grow: 1;
 }
+
+.svelte-lightbox-thumbnail {
+  max-width: 35%;
+  height: auto;
+}

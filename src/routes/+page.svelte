@@ -1,17 +1,11 @@
 <script>
   import ProjectView from '$components/project-view.svelte'
   import Head from '$components/head.svelte'
-  import {
-    authorsStore,
-    siteMetadataStore,
-  } from '$stores/site-metadata'
+  import { Lightbox } from 'svelte-lightbox'
+  import { authorsStore, siteMetadataStore } from '$stores/site-metadata'
   export let data
 
-  const {
-    siteUrl,
-    description,
-    openGraphDefaultImage,
-  } = $siteMetadataStore || []
+  const { siteUrl, description, openGraphDefaultImage } = $siteMetadataStore || []
   const { name: authorName } = $authorsStore || []
 </script>
 
@@ -28,9 +22,10 @@
       <h2 class="text-3xl mb-4 font-bold tracking-normal">{name}</h2>
       <p class="text-xl mb-4">{intro}</p>
     </div>
-
-    <img class="mask mask-squircle h-48" src={url} alt={name} />
+    <Lightbox transitionDuration="100">
+      <img class="mask mask-squircle" src={url} alt={name} />
+    </Lightbox>
   </div>
 {/each}
 
-<ProjectView/>
+<ProjectView />
