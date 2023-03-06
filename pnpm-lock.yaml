@@ -20,7 +20,7 @@ specifiers:
   svelte-lightbox: ^1.1.1
   svelte-preprocess: ^5.0.1
   tailwindcss: ^3.2.7
-  theme-change: ^2.4.0
+  theme-change: ^2.5.0
   vite: ^4.1.4
 
 devDependencies:
@@ -43,7 +43,7 @@ devDependencies:
   svelte-lightbox: 1.1.1_svelte@3.55.1
   svelte-preprocess: 5.0.1_gqx7lw3sljhsd4bstor5m2aa2u
   tailwindcss: 3.2.7_postcss@8.4.21
-  theme-change: 2.4.0
+  theme-change: 2.5.0
   vite: 4.1.4
 
 packages:
@@ -2083,8 +2083,8 @@ packages:
       - ts-node
     dev: true
 
-  /theme-change/2.4.0:
-    resolution: {integrity: sha512-HbMckoxM7sV8L7wk53S5ceiBQWcTxFozuvUmvjdjPqpyVFkzPQHylSsDHYyT8qTruORe+1Sft7ExqlXQEeWHBA==}
+  /theme-change/2.5.0:
+    resolution: {integrity: sha512-B/UdsgdHAGhSKHTAQnxg/etN0RaMDpehuJmZIjLMDVJ6DGIliRHGD6pODi1CXLQAN9GV0GSyB3G6yCuK05PkPQ==}
     dev: true
 
   /tiny-glob/0.2.9:
