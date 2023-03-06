@@ -15,8 +15,8 @@
     }
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "next",
+    "@sveltejs/adapter-auto": "latest",
+    "@sveltejs/kit": "latest",
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.15",
