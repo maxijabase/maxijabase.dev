@@ -43,7 +43,7 @@
 
 <div class="mb-40 flex items-end">
   <div class="mr-6">
-    <h2 class="mb-4 text-3xl font-bold tracking-normal">{name}</h2>
+    <h2 class="mb-4 text-3xl font-bold tracking-normal">{author?.name}</h2>
     <p class="mb-4 text-xl">{author?.intro}</p>
   </div>
   <Lightbox transitionDuration={100}>
