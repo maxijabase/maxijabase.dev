@@ -1,29 +1,15 @@
-import adapter from '@sveltejs/adapter-auto'
-import path from 'path'
-import preprocess from 'svelte-preprocess'
+import adapter from '@sveltejs/adapter-auto';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  kit: {
-    adapter: adapter(),
+	preprocess: vitePreprocess(),
+	kit: {
+		adapter: adapter(),
+		alias: {
+			$stores: 'src/stores',
+		}
+	},
+};
 
-    alias: {
-      $components: path.resolve('./src/lib/components'),
-      $lib: path.resolve('./src/lib'),
-      $stores: path.resolve('./src/stores'),
-    },
-  },
-
-  env: {
-    dir: process.cwd(),
-    publicPrefix: 'PUBLIC_'
-  },
-
-  preprocess: [
-    preprocess({
-      postcss: true,
-    }),
-  ],
-}
-
-export default config
+export default config;

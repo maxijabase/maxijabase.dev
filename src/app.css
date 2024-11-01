@@ -1,23 +1,22 @@
-/* Write your global styles here, in PostCSS syntax */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 html, footer, .navbar {
-  transition: background-color .4s ease-in-out, color .4s ease-in-out;
-}
-
-#svelte {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex-grow: 1;
-}
-
-.svelte-lightbox-thumbnail {
-  max-width: 35%;
-  height: auto;
-}
+    transition: background-color .4s ease-in-out, color .4s ease-in-out;
+  }
+  
+  #svelte {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    flex-grow: 1;
+  }
+  
+  .svelte-lightbox-thumbnail {
+    max-width: 35%;
+    height: auto;
+  }

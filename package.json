@@ -1,41 +1,43 @@
 {
-  "name": "developer-portfolio-and-blog",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "package": "svelte-kit package",
-    "preview": "vite preview",
-    "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. .",
-    "format": "pretty-quick"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
-  "devDependencies": {
-    "@sveltejs/adapter-auto": "latest",
-    "@sveltejs/kit": "latest",
-    "@tailwindcss/typography": "^0.5.9",
-    "autoprefixer": "^10.4.13",
-    "cssnano": "^5.1.15",
-    "daisyui": "^2.51.3",
-    "graphql": "^16.6.0",
-    "graphql-request": "^5.2.0",
-    "husky": "^8.0.3",
-    "marked": "^4.2.12",
-    "postcss": "^8.4.21",
-    "postcss-load-config": "^4.0.1",
-    "prettier": "^2.8.4",
-    "prettier-plugin-svelte": "^2.9.0",
-    "pretty-quick": "^3.1.3",
-    "svelte": "^3.55.1",
-    "svelte-lightbox": "^1.1.1",
-    "svelte-preprocess": "^5.0.1",
-    "tailwindcss": "^3.2.7",
-    "theme-change": "^2.5.0",
-    "vite": "^4.1.4"
-  },
-  "type": "module"
+	"name": "maxijabase.dev",
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "prettier --check . && eslint ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.3.1",
+		"@sveltejs/kit": "^2.7.3",
+		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"@tailwindcss/typography": "^0.5.15",
+		"@types/eslint": "^9.6.1",
+		"autoprefixer": "^10.4.20",
+		"daisyui": "^4.12.14",
+		"eslint": "^9.13.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.46.0",
+		"globals": "^15.11.0",
+		"prettier": "^3.3.3",
+		"prettier-plugin-svelte": "^3.2.7",
+		"prettier-plugin-tailwindcss": "^0.6.8",
+		"svelte": "^5.1.6",
+		"svelte-check": "^4.0.5",
+		"svelte-lightbox": "^1.1.5",
+		"tailwindcss": "^3.4.14",
+		"typescript": "^5.6.3",
+		"typescript-eslint": "^8.12.2",
+		"vite": "^5.4.10"
+	},
+	"dependencies": {
+		"graphql": "^16.9.0",
+		"graphql-request": "^7.1.0",
+		"marked": "^14.1.3",
+		"theme-change": "^2.5.0"
+	}
 }

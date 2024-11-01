@@ -1,41 +1,80 @@
-<script>
-  import { page } from '$app/stores'
-  import BackLink from '$components/back-link.svelte'
-  import Head from '$components/head.svelte'
-  import { siteMetadataStore } from '$stores/site-metadata'
-  import { marked } from 'marked'
-  import { onMount } from 'svelte'
-  export let data
-  let pathname
+<script lang="ts">
+  import BackLink from '$lib/components/back-link.svelte';
+  import type { Project } from '$lib/models/project';
+  import { fetchProject } from '$stores/site-metadata';
+  import { marked } from 'marked';
 
-  onMount(async () => {
-    pathname = $page.url.pathname
-  })
+  let { data } = $props();
+  let project = $state<Project>();
+  let loading = $state(false);
 
-  const { siteUrl, name: siteName, openGraphDefaultImage } = $siteMetadataStore || []
+  $effect(() => {
+    let isCancelled = false;
+
+    const fetchData = async () => {
+      loading = true;
+      try {
+        if (!isCancelled) {
+          console.log(data.project);
+          project = await fetchProject(data.project);
+        }
+      } catch (err) {
+        console.error('Failed to fetch data', err);
+      } finally {
+        if (!isCancelled) {
+          loading = false;
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isCancelled = true;
+    };
+  });
 </script>
 
-<Head
-  title={`${data.project.name} · ${siteName}`}
-  description={data.project.description.slice(0, 120)}
-  image={openGraphDefaultImage.url}
-  url={`${siteUrl}${pathname}`}
-/>
+{#if loading}
+  <!-- Back button skeleton -->
+  <div class="mb-4 animate-pulse">
+    <div class="h-8 w-32 rounded bg-gray-200"></div>
+  </div>
 
-<!-- Back button -->
-<BackLink text="back to projects" href="/projects"/>
+  <!-- Title skeleton -->
+  <div class="prose prose-xl animate-pulse py-5">
+    <div class="h-10 w-2/3 rounded bg-gray-200"></div>
+  </div>
 
-<!-- Title -->
-<div class="prose prose-xl py-5">
-  <h2>{data.project.name}</h2>
-</div>
+  <!-- Image skeleton -->
+  <div class="mb-5 animate-pulse">
+    <div class="h-[400px] w-full rounded-lg bg-gray-200"></div>
+  </div>
 
-<!-- Image -->
-<div class="mb-5">
-  <img class="rounded-lg" src={data.project.image[0].url} alt={data.project.title} />
-</div>
+  <!-- Content skeleton -->
+  <article class="prose prose-lg max-w-none animate-pulse space-y-4 text-justify">
+    <div class="h-4 w-full rounded bg-gray-200"></div>
+    <div class="h-4 w-5/6 rounded bg-gray-200"></div>
+    <div class="h-4 w-4/5 rounded bg-gray-200"></div>
+    <div class="h-4 w-full rounded bg-gray-200"></div>
+    <div class="h-4 w-3/4 rounded bg-gray-200"></div>
+  </article>
+{:else}
+  <!-- Back button -->
+  <BackLink text="back to projects" href="/projects" />
 
-<!-- Content -->
-<article class="prose prose-lg max-w-none text-justify">
-  {@html marked(data.project.about ?? '')}
-</article>
+  <!-- Title -->
+  <div class="prose prose-xl py-5">
+    <h2>{project?.name}</h2>
+  </div>
+
+  <!-- Image -->
+  <div class="mb-5">
+    <img class="rounded-lg" src={project?.image[0].url} alt={project?.description} />
+  </div>
+
+  <!-- Content -->
+  <article class="prose prose-lg max-w-none text-justify">
+    {@html marked(project?.about ?? '')}
+  </article>
+{/if}

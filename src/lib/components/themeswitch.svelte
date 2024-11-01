@@ -1,32 +1,27 @@
-<script>
-  import { themeChange } from 'theme-change'
-  import { browser } from '$app/environment'
+<script lang="ts">
+  import { themeChange } from 'theme-change';
+  import { browser } from '$app/environment';
 
-  let darkMode
+  let darkMode: boolean;
   if (browser) {
-    darkMode = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    themeChange(false)
+    darkMode =
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    themeChange(false);
   }
 
   function handleSwitchDarkMode() {
-    darkMode = !darkMode
+    darkMode = !darkMode;
 
-    darkMode
-      ? localStorage.setItem('theme', 'dark')
-      : localStorage.setItem('theme', 'light')
+    darkMode ? localStorage.setItem('theme', 'dark') : localStorage.setItem('theme', 'light');
 
-    themeChange(false)
+    themeChange(false);
   }
 </script>
 
 <div>
-  <input
-    checked={darkMode}
-    on:click={handleSwitchDarkMode}
-    type="checkbox"
-    id="theme-toggle"
-  />
-  <label for="theme-toggle" />
+  <input checked={darkMode} on:click={handleSwitchDarkMode} type="checkbox" id="theme-toggle" />
+  <label for="theme-toggle"></label>
 </div>
 
 <style lang="postcss">
@@ -35,7 +30,7 @@
   }
 
   #theme-toggle + label {
-    @apply inline-block cursor-pointer h-8 w-8 rounded-full duration-300 content-[''];
+    @apply inline-block h-8 w-8 cursor-pointer rounded-full duration-300 content-[''];
   }
 
   #theme-toggle:not(:checked) + label {

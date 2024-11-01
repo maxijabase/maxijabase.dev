@@ -9,10 +9,10 @@
 >
   <div>
     <div class="grid grid-flow-col gap-6">
-      <a href={PUBLIC_LINKEDIN_LINK} target="_blank" rel="noreferrer">
+      <a href={PUBLIC_LINKEDIN_LINK ?? ''} target="_blank" rel="noreferrer">
         <LinkedinIcon />
       </a>
-      <a href={PUBLIC_GITHUB_LINK} target="_blank" rel="noreferrer">
+      <a href={PUBLIC_GITHUB_LINK ?? ''} target="_blank" rel="noreferrer">
         <GithubIcon />
       </a>
     </div>

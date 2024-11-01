@@ -1,1 +1,1 @@
-<i class="text-[40px] devicon-github-original"/>
+<i class="text-[40px] devicon-github-original"></i>

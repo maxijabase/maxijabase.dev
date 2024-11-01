@@ -1,50 +1,90 @@
-<script>
-  import BackLink from '$components/back-link.svelte';
+<script lang="ts">
+  import BackLink from '$lib/components/back-link.svelte';
+  import type { Post } from '$lib/models/post.js';
+  import { fetchPost } from '$stores/site-metadata.js';
+  import { marked } from 'marked';
 
-  import { page } from '$app/stores'
-  import Head from '$components/head.svelte'
-  import { siteMetadataStore } from '$stores/site-metadata'
-  import { marked } from 'marked'
-  import { onMount } from 'svelte'
+  let { data } = $props();
+  let post = $state<Post>();
+  let loading = $state(false);
 
-  let pathname
-  export let data
+  $effect(() => {
+    let isCancelled = false;
 
-  onMount(async () => {
-    pathname = $page.url.pathname
-  })
+    const fetchData = async () => {
+      loading = true;
+      try {
+        if (!isCancelled) {
+          console.log(data.post);
+          post = await fetchPost(data.post);
+        }
+      } catch (err) {
+        console.error('Failed to fetch data', err);
+      } finally {
+        if (!isCancelled) {
+          loading = false;
+        }
+      }
+    };
 
-  const { title, date, content, coverImage, coverImageCaption } = data.post
-  const { siteUrl, name: siteName } = $siteMetadataStore || []
+    fetchData();
+
+    return () => {
+      isCancelled = true;
+    };
+  });
 </script>
 
-<Head
-  title={`${title} · ${siteName}`}
-  description={content.slice(0, 120)}
-  image={coverImage.url}
-  url={`${siteUrl}${pathname}`}
-/>
+{#if loading}
+  <div class="animate-pulse">
+    <!-- Back button skeleton -->
+    <div class="mb-4 h-6 w-32 rounded bg-gray-200"></div>
 
-<!-- Back button -->
-<BackLink text="back to blog" href="/blog"/>
+    <!-- Title skeleton -->
+    <div class="prose prose-xl py-5">
+      <div class="h-12 w-3/4 rounded bg-gray-200"></div>
+    </div>
 
-<!-- Title -->
-<div class="prose prose-xl py-5">
-  <h1>{title}</h1>
-</div>
+    <!-- Date skeleton -->
+    <div class="mb-6 h-4 w-40 rounded bg-gray-200"></div>
 
-<!-- Date -->
-<p class="text-xs tracking-widest font-semibold mb-6">
-  {new Date(date).toDateString()}
-</p>
+    <!-- Image skeleton -->
+    <div class="mb-5">
+      <div class="h-96 rounded-xl bg-gray-200"></div>
+      <div class="mt-2 h-4 w-1/2 rounded bg-gray-200"></div>
+    </div>
 
-<!-- Image -->
-<div class="mb-5">
-  <img class="rounded-xl" src={coverImage.url} alt={`Cover image for ${title}`} />
-  <p class="text-gray-500 italic font-semibold text-sm">{coverImageCaption}</p>
-</div>
+    <!-- Content skeleton -->
+    <article class="prose prose-lg max-w-none space-y-4 text-justify">
+      {#each Array(8) as _}
+        <div class="h-4 rounded bg-gray-200"></div>
+        <div class="h-4 w-11/12 rounded bg-gray-200"></div>
+        <div class="h-4 w-10/12 rounded bg-gray-200"></div>
+      {/each}
+    </article>
+  </div>
+{:else}
+  <!-- Original content -->
+  <BackLink text="back to blog" href="/blog" />
 
-<!-- Content -->
-<article div class="prose prose-lg max-w-none text-justify">
-  {@html marked(content)}
-</article>
+  <!-- Title -->
+  <div class="prose prose-xl py-5">
+    <h1>{post?.title}</h1>
+  </div>
+
+  <!-- Date -->
+  <p class="mb-6 text-xs font-semibold tracking-widest">
+    {new Date(post?.date ?? '').toDateString()}
+  </p>
+
+  <!-- Image -->
+  <div class="mb-5">
+    <img class="rounded-xl" src={post?.coverImage.url} alt={`Cover image for ${post?.title}`} />
+    <p class="text-sm font-semibold italic text-gray-500">{post?.coverImageCaption}</p>
+  </div>
+
+  <!-- Content -->
+  <article div class="prose prose-lg max-w-none text-justify">
+    {@html marked(post?.content ?? '')}
+  </article>
+{/if}

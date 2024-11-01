@@ -1,31 +1,45 @@
-<script>
-  import { page } from '$app/stores'
-  import ProjectView from '$components/project-view.svelte'
-  import Head from '$components/head.svelte'
-  import { siteMetadataStore } from '$stores/site-metadata'
-  import { onMount } from 'svelte'
+<script lang="ts">
+  import { fetchProjects } from '$stores/site-metadata';
+  import type { Project } from '$lib/models/project';
+  import ProjectCard from '$lib/components/project-card.svelte';
 
-  export let data
-  let pathname
+  let projects = $state<Project[]>([]);
+  let loading = $state(false);
 
-  onMount(async () => {
-    pathname = $page.url.pathname
-  })
+  $effect(() => {
+    let isCancelled = false;
 
-  const {
-    siteUrl,
-    name: siteName,
-    openGraphDefaultImage,
-  } = $siteMetadataStore || []
+    const fetchData = async () => {
+      loading = true;
+      try {
+        if (!isCancelled) {
+          projects = await fetchProjects();
+        }
+      } catch (err) {
+        console.error('Failed to fetch data', err);
+      } finally {
+        if (!isCancelled) {
+          loading = false;
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isCancelled = true;
+    };
+  });
 </script>
 
-<Head
-  title={`Projects · ${siteName}`}
-  description={`A list of recent projects.`}
-  image={openGraphDefaultImage.url}
-  url={`${siteUrl}${pathname}`}
-/>
-
-<h1 class="font-bold mb-20 text-center text-5xl">My projects</h1>
-
-<ProjectView />
+<div class="grid justify-center gap-10 md:grid-cols-2 lg:-mx-44 lg:grid-cols-3">
+  {#if loading}
+    <ProjectCard loading={true} />
+    <ProjectCard loading={true} />
+    <ProjectCard loading={true} />
+  {:else}
+    {#each projects as { name, slug, description, image }}
+      <ProjectCard {name} {description} url={image[0].url} {slug} />
+    {/each}
+  {/if}
+</div>
